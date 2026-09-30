@@ -1,0 +1,205 @@
+body {
+    margin: 0;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    background: #faf7f5;
+    color: #3d3432;
+}
+
+/* Header */
+
+header {
+    text-align: center;
+    padding: 45px 20px;
+    background: #f3e1df;
+}
+
+header h1 {
+    margin: 0;
+    font-family: Georgia, serif;
+    font-size: 40px;
+    color: #4a3432;
+}
+
+header p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #6f5b58;
+}
+
+
+/* Menu */
+
+.menu {
+    width: 90%;
+    max-width: 1000px;
+    margin: 35px auto;
+}
+
+.menu h2,
+.cart-section h2 {
+    text-align: center;
+    margin: 40px 0 25px;
+    font-family: Georgia, serif;
+    font-size: 28px;
+    color: #4a3432;
+}
+
+
+/* Product Cards */
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 230px;
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card h3 {
+    margin: 14px 0 6px;
+    font-family: Georgia, serif;
+    font-size: 20px;
+    color: #4a3432;
+}
+
+.card p {
+    color: #777;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.card strong {
+    display: block;
+    margin-top: 10px;
+    font-size: 18px;
+    color: #9b5967;
+}
+
+
+/* Add to Cart Button */
+
+.card button,
+.place-order {
+    margin-top: 12px;
+    background: #9b5967;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.card button:hover,
+.place-order:hover {
+    background: #7f4553;
+}
+
+
+/* Cart */
+
+.cart-section {
+    width: 90%;
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10);
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px;
+    margin: 10px 0;
+    background: #faf7f5;
+    border-radius: 8px;
+}
+
+.cart-item button {
+    background: #b86b72;
+    color: white;
+    border: none;
+    padding: 7px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.cart-item button:hover {
+    background: #944f57;
+}
+
+#cartTotal {
+    text-align: right;
+    margin-top: 20px;
+    font-size: 20px;
+    color: #9b5967;
+}
+
+
+/* Payment */
+
+.payment {
+    margin-top: 25px;
+    padding: 18px;
+    background: #faf7f5;
+    border-radius: 8px;
+}
+
+.payment h3 {
+    margin-top: 0;
+}
+
+.payment label {
+    display: block;
+    margin: 12px 0;
+    cursor: pointer;
+}
+
+.payment input {
+    margin-right: 8px;
+}
+
+
+/* Place Order */
+
+.place-order {
+    display: block;
+    margin: 25px auto 5px;
+    padding: 12px 30px;
+    font-size: 15px;
+}
+
+
+/* Footer */
+
+footer {
+    text-align: center;
+    padding: 22px;
+    margin-top: 50px;
+    background: #f3e1df;
+    color: #6f5b58;
+    font-size: 14px;
+}

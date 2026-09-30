@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bloom & Scoop</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Bloom & Scoop</h1>
+    <p>Flowers & sweet treats for every occasion</p>
+</header>
+
+
+<!-- PRODUCTS -->
+
+<section class="menu">
+
+    <h2>Fresh Flowers</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <img src="images/roses.jpeg" alt="Red Roses">
+
+            <h3>Red Roses</h3>
+            <p>Beautiful fresh roses</p>
+            <strong>₹399</strong>
+
+            <button onclick="addToCart('Red Roses', 399)">
+                Add to Cart
+            </button>
+        </div>
+
+
+        <div class="card">
+            <img src="images/lotus.jpeg" alt="Lotus Bouquet">
+
+            <h3>Lotus Bouquet</h3>
+            <p>Elegant and beautiful flowers</p>
+            <strong>₹349</strong>
+
+            <button onclick="addToCart('Lotus Bouquet', 349)">
+                Add to Cart
+            </button>
+        </div>
+
+
+        <div class="card">
+            <img src="images/flowersss.jpeg" alt="Mixed Flowers">
+
+            <h3>Mixed Flowers</h3>
+            <p>A colourful flower collection</p>
+            <strong>₹499</strong>
+
+            <button onclick="addToCart('Mixed Flowers', 499)">
+                Add to Cart
+            </button>
+        </div>
+
+    </div>
+
+
+    <h2>Our Ice Creams</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <img src="images/butterscotch.jpeg"
+                 alt="Butterscotch Ice Cream">
+
+            <h3>Butterscotch</h3>
+            <p>Sweet and crunchy delight</p>
+            <strong>₹120</strong>
+
+            <button onclick="addToCart('Butterscotch Ice Cream', 120)">
+                Add to Cart
+            </button>
+        </div>
+
+
+        <div class="card">
+            <img src="images/chocolate.jpeg"
+                 alt="Chocolate Ice Cream">
+
+            <h3>Chocolate</h3>
+            <p>Rich chocolate delight</p>
+            <strong>₹130</strong>
+
+            <button onclick="addToCart('Chocolate Ice Cream', 130)">
+                Add to Cart
+            </button>
+        </div>
+
+
+        <div class="card">
+            <img src="images/Ninja Creami Chocolate Ice Cream.jpeg"
+                 alt="Ninja Creami Chocolate Ice Cream">
+
+            <h3>Ninja Creami Chocolate</h3>
+            <p>Rich and creamy chocolate treat</p>
+            <strong>₹140</strong>
+
+            <button onclick="addToCart('Ninja Creami Chocolate', 140)">
+                Add to Cart
+            </button>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CART -->
+
+<section class="cart-section">
+
+    <h2>Your Cart</h2>
+
+    <div id="cartItems">
+        <p>Your cart is empty.</p>
+    </div>
+
+    <h3 id="cartTotal">Total: ₹0</h3>
+
+
+    <!-- PAYMENT -->
+
+    <div class="payment">
+
+        <h3>Choose Payment Method</h3>
+
+        <label>
+            <input type="radio" name="payment" value="UPI">
+            UPI
+        </label>
+
+        <label>
+            <input type="radio" name="payment" value="Card">
+            Card
+        </label>
+
+        <label>
+            <input type="radio" name="payment" value="Cash on Delivery">
+            Cash on Delivery
+        </label>
+
+    </div>
+
+
+    <button class="place-order" onclick="placeOrder()">
+        Place Order
+    </button>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+    <p>© 2026 Bloom & Scoop | Made with love</p>
+</footer>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+    let cart = [];
+
+
+    function addToCart(name, price) {
+
+        let existingItem = cart.find(item => item.name === name);
+
+        if (existingItem) {
+
+            existingItem.quantity++;
+
+        } else {
+
+            cart.push({
+                name: name,
+                price: price,
+                quantity: 1
+            });
+
+        }
+
+        displayCart();
+
+    }
+
+
+    function displayCart() {
+
+        let cartItems = document.getElementById("cartItems");
+
+        cartItems.innerHTML = "";
+
+        if (cart.length === 0) {
+
+            cartItems.innerHTML = "<p>Your cart is empty.</p>";
+
+            document.getElementById("cartTotal").innerText =
+                "Total: ₹0";
+
+            return;
+        }
+
+
+        let total = 0;
+
+
+        cart.forEach((item, index) => {
+
+            let itemTotal = item.price * item.quantity;
+
+            total += itemTotal;
+
+
+            let div = document.createElement("div");
+
+            div.className = "cart-item";
+
+            div.innerHTML = `
+                <span>
+                    ${item.name}
+                    <br>
+                    ₹${item.price} × ${item.quantity}
+                </span>
+
+                <button onclick="removeFromCart(${index})">
+                    Remove
+                </button>
+            `;
+
+            cartItems.appendChild(div);
+
+        });
+
+
+        document.getElementById("cartTotal").innerText =
+            "Total: ₹" + total;
+
+    }
+
+
+    function removeFromCart(index) {
+
+        cart.splice(index, 1);
+
+        displayCart();
+
+    }
+
+
+    function placeOrder() {
+
+        if (cart.length === 0) {
+
+            alert("Your cart is empty. Please add an item first.");
+
+            return;
+        }
+
+
+        let paymentMethod =
+            document.querySelector('input[name="payment"]:checked');
+
+
+        if (!paymentMethod) {
+
+            alert("Please choose a payment method.");
+
+            return;
+        }
+
+
+        let total = 0;
+
+        cart.forEach(item => {
+
+            total += item.price * item.quantity;
+
+        });
+
+
+        alert(
+            "Order Confirmed!\n\n" +
+            "Thank you for shopping with Bloom & Scoop.\n\n" +
+            "Order Total: ₹" + total + "\n" +
+            "Payment Method: " + paymentMethod.value
+        );
+
+
+        cart = [];
+
+        document.querySelectorAll(
+            'input[name="payment"]'
+        ).forEach(radio => {
+
+            radio.checked = false;
+
+        });
+
+
+        displayCart();
+
+    }
+
+</script>
+
+
+</body>
+</html>
